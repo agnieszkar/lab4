@@ -3,7 +3,7 @@ package com;
 import java.math.BigInteger;
 import java.util.concurrent.ExecutionException;
 
-public class Main {
+public class MainZad2 {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ParallelPrimeGenerator parallelPrimeGenerator = new ParallelPrimeGenerator();
