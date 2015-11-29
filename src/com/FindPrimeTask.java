@@ -8,7 +8,6 @@ import java.util.concurrent.Callable;
  * Created by Agnieszka on 28.11.2015.
  */
 public class FindPrimeTask implements Callable<BigInteger>{
-
     private static final BigInteger THREE = new BigInteger("3");
     private static final BigInteger ONE = new BigInteger("1");
     private static final BigInteger TWO = new BigInteger("2");

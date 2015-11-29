@@ -10,12 +10,11 @@ import java.util.concurrent.*;
  * Created by Agnieszka on 28.11.2015.
  */
 public class ParallelPrimeGenerator {
-
     private final SecureRandom secureRandom = new SecureRandom();
 
     public List<BigInteger> getPrimes(int numberOfPrimes, final int length) throws ExecutionException, InterruptedException {
-        List<BigInteger> primes = new ArrayList<>(numberOfPrimes);
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfPrimes);
+        List<BigInteger> primes = new ArrayList<>(numberOfPrimes);
         List<FindPrimeTask> tasks = new ArrayList<>(numberOfPrimes);
         for (int i = 0; i < numberOfPrimes; i++) {
             tasks.add(new FindPrimeTask(length, secureRandom));
