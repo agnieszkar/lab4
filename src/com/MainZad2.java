@@ -10,9 +10,9 @@ public class MainZad2 {
         int d = 256;
         int k = 3;
 
-        generateRsaKeys(k, d);
-//        encrypt();
-//        decrypt();
+        //generateRsaKeys(k, d);
+        encryptWithCRT();
+        decrypt();
     }
 
     private static void encrypt() throws IOException {
@@ -37,7 +37,10 @@ public class MainZad2 {
         keyReaderWriter.write(keyPair.getPublicKey(), "RSA_publicKey.txt");
     }
 
-    private static void encryptWithCRT(){
-
+    private static void encryptWithCRT() throws IOException, ExecutionException, InterruptedException {
+        RsaWithCrtEngine rsaEngine = new RsaWithCrtEngine();
+        KeyReaderWriter keyReaderWriter = new KeyReaderWriter();
+        RsaKey publicKey = keyReaderWriter.read("RSA_publicKey.txt");
+        rsaEngine.crypt("plaintext.txt", "encrypted.txt", publicKey.getKeyLength()/8-11, publicKey);
     }
 }
