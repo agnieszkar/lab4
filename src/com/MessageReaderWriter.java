@@ -1,7 +1,5 @@
 package com;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -15,7 +13,9 @@ import java.nio.file.Paths;
 public class MessageReaderWriter {
     public void writeMessage(String fileName, BigInteger message) throws IOException {
         FileOutputStream outputStream = new FileOutputStream(fileName);
-        IOUtils.write(message.toByteArray(), outputStream);
+        //IOUtils.write(message.toByteArray(), outputStream);
+        outputStream.write(message.toByteArray());
+        outputStream.close();
     }
 
     public BigInteger readMessage(String inFileName, int messageSize) throws IOException {

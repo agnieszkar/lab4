@@ -12,7 +12,7 @@ public class ExtendedEuclideanAlgorithmTask implements Callable<BigInteger> {
     private final BigInteger message;
     private final BigInteger N;
 
-    public ExtendedEuclideanAlgorithmTask(BigInteger message, BigInteger e, BigInteger factor, BigInteger N){
+    public ExtendedEuclideanAlgorithmTask(BigInteger message, BigInteger e, BigInteger factor, BigInteger N) {
         this.factor = factor;
         this.e = e;
         this.message = message;
@@ -21,11 +21,10 @@ public class ExtendedEuclideanAlgorithmTask implements Callable<BigInteger> {
 
     @Override
     public BigInteger call() throws Exception {
-        BigInteger a = message.modPow(e, factor.mod(factor.subtract(BigInteger.ONE)));
+        BigInteger a = message.modPow(e.mod(factor.subtract(BigInteger.ONE)), factor);
         BigInteger n = N.divide(factor);
         BigInteger s = n.modInverse(factor);
-        return a.multiply(n).multiply(s);
+        BigInteger result = a.multiply(n).multiply(s);
+        return result;
     }
-
-
 }

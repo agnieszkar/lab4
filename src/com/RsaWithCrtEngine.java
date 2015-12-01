@@ -21,10 +21,11 @@ public class RsaWithCrtEngine {
         List<ExtendedEuclideanAlgorithmTask> tasks = new ArrayList<>(rsaKey.getFactors().size());
         rsaKey.getFactors().forEach(factor -> {tasks.add(new ExtendedEuclideanAlgorithmTask(m, rsaKey.getE(),factor, rsaKey.getN()));});
         BigInteger sum = BigInteger.ZERO;
-        for (Future<BigInteger> future : executorService.invokeAll(tasks)){
+        List<Future<BigInteger>> f = executorService.invokeAll(tasks);
+        for (Future<BigInteger> future : f) {
             sum = sum.add(future.get());
         }
-        System.out.println("sum:"+sum);
+        sum = sum.mod(rsaKey.getN());
         executorService.shutdown();
         messageReaderWriter.writeMessage(outFileName, sum);
     }

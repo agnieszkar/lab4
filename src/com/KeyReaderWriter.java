@@ -1,10 +1,7 @@
 package com;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.*;
 import java.math.BigInteger;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,9 +13,7 @@ public class KeyReaderWriter {
     public void write(RsaKey rsaKey, String fileName) throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter(fileName, "UTF-8");
         writer.print(rsaKey.getN() + ":" + rsaKey.getE());
-        rsaKey.getFactors().forEach(factor -> {
-            writer.print(factor + ":");
-        });
+        rsaKey.getFactors().forEach(factor -> writer.print(":" + factor));
         writer.close();
     }
 

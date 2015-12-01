@@ -7,8 +7,7 @@ import java.util.concurrent.Callable;
 /**
  * Created by Agnieszka on 28.11.2015.
  */
-public class FindPrimeTask implements Callable<BigInteger>{
-    private static final BigInteger THREE = new BigInteger("3");
+public class FindPrimeTask implements Callable<BigInteger> {
     private static final BigInteger ONE = new BigInteger("1");
     private static final BigInteger TWO = new BigInteger("2");
     private static final BigInteger ZERO = new BigInteger("0");
@@ -16,7 +15,7 @@ public class FindPrimeTask implements Callable<BigInteger>{
     private final SecureRandom secureRandom;
     private final int length;
 
-    public FindPrimeTask(int length, SecureRandom secureRandom){
+    public FindPrimeTask(int length, SecureRandom secureRandom) {
         this.length = length;
         this.secureRandom = secureRandom;
     }
@@ -24,7 +23,7 @@ public class FindPrimeTask implements Callable<BigInteger>{
     @Override
     public BigInteger call() throws Exception {
         BigInteger numberToTest = new BigInteger(length, secureRandom);
-        while (!passPrimalityTest(numberToTest, length/2 + 1)) {
+        while (!passPrimalityTest(numberToTest, length / 2 + 1)) {
             numberToTest = new BigInteger(length, secureRandom);
         }
         return numberToTest;

@@ -17,7 +17,6 @@ public class RsaKeysGenerator {
         BigInteger n = BigInteger.ONE;
         BigInteger fi = BigInteger.ONE;
         for (BigInteger prime : primes) {
-            System.out.println(prime);
             n = n.multiply(prime);
             fi = fi.multiply(prime.subtract(BigInteger.ONE));
         }

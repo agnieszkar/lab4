@@ -7,12 +7,14 @@ import java.util.concurrent.ExecutionException;
 
 public class MainZad2 {
     public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
-        int d = 256;
+        int d = 30;
         int k = 3;
 
         //generateRsaKeys(k, d);
+        //encrypt();
         encryptWithCRT();
-        decrypt();
+        decryptWithCRT();
+        //decrypt();
     }
 
     private static void encrypt() throws IOException {
@@ -42,5 +44,12 @@ public class MainZad2 {
         KeyReaderWriter keyReaderWriter = new KeyReaderWriter();
         RsaKey publicKey = keyReaderWriter.read("RSA_publicKey.txt");
         rsaEngine.crypt("plaintext.txt", "encrypted.txt", publicKey.getKeyLength()/8-11, publicKey);
+    }
+
+    private static void decryptWithCRT() throws IOException, ExecutionException, InterruptedException {
+        RsaWithCrtEngine rsaEngine = new RsaWithCrtEngine();
+        KeyReaderWriter keyReaderWriter = new KeyReaderWriter();
+        RsaKey privateKey = keyReaderWriter.read("RSA_privateKey.txt");
+        rsaEngine.crypt("encrypted.txt", "decrypted.txt", privateKey.getKeyLength() / 8 - 11, privateKey);
     }
 }
